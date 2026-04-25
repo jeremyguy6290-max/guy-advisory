@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-teal: #00b8b8;
+  --color-green: #7ed957;
+  --color-navy: #0f4c5c;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: #0f4c5c;
+}
+
+/*
+  Continuous page gradient applied to the wrapper that contains every
+  section after the hero.  Percentages are tuned so the light zone covers
+  Intro + About + Services, the transition runs through Experience, and
+  the dark zone starts at Testimonials and deepens through Contact.
+*/
+.page-gradient {
+  background: linear-gradient(
+    180deg,
+    #ffffff   0%,
+    #f4fff8  18%,
+    #e8f9df  35%,
+    #d8f5ec  52%,
+    #b7eee4  66%,
+    #5bb8ad  82%,
+    #0f4c5c 100%
+  );
+}
+
+/* Blob drift animations used by BackgroundGradientAnimation */
+@keyframes blob-drift-1 {
+  0%,  100% { transform: translate(  0px,   0px) scale(1.00); }
+  33%        { transform: translate( 38px, -28px) scale(1.04); }
+  66%        { transform: translate(-22px,  32px) scale(0.97); }
+}
+
+@keyframes blob-drift-2 {
+  0%,  100% { transform: translate(  0px,   0px) scale(1.00); }
+  33%        { transform: translate(-32px,  22px) scale(0.96); }
+  66%        { transform: translate( 28px, -38px) scale(1.03); }
+}
+
+.blob-drift-1 {
+  animation: blob-drift-1 14s ease-in-out infinite;
+}
+
+.blob-drift-2 {
+  animation: blob-drift-2 11s ease-in-out infinite;
+}
