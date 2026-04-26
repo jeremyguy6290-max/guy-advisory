@@ -8,16 +8,17 @@ const inv = (start: number, end: number, v: number) =>
   Math.max(0, Math.min(1, (v - start) / (end - start)));
 
 export default function BeehiveScroll() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef    = useRef<HTMLCanvasElement>(null);
-  const leftRef      = useRef<HTMLDivElement>(null);
-  const rightRef     = useRef<HTMLDivElement>(null);
-  const leftTextRef  = useRef<HTMLParagraphElement>(null);
-  const rightTextRef = useRef<HTMLParagraphElement>(null);
-  const bgRef        = useRef<HTMLDivElement>(null);
-  const imagesRef    = useRef<HTMLImageElement[]>([]);
-  const rafRef       = useRef<number>(0);
-  const lastFrameRef = useRef<number>(-1);
+  const containerRef  = useRef<HTMLDivElement>(null);
+  const canvasRef     = useRef<HTMLCanvasElement>(null);
+  const mobileTextRef = useRef<HTMLDivElement>(null);
+  const leftRef       = useRef<HTMLDivElement>(null);
+  const rightRef      = useRef<HTMLDivElement>(null);
+  const leftTextRef   = useRef<HTMLParagraphElement>(null);
+  const rightTextRef  = useRef<HTMLParagraphElement>(null);
+  const bgRef         = useRef<HTMLDivElement>(null);
+  const imagesRef     = useRef<HTMLImageElement[]>([]);
+  const rafRef        = useRef<number>(0);
+  const lastFrameRef  = useRef<number>(-1);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -65,10 +66,15 @@ export default function BeehiveScroll() {
       const scrollable = el.offsetHeight - window.innerHeight;
       const progress   = Math.max(0, Math.min(1, -top / scrollable));
 
-      // ── Text: fade in over first 12%, parallax drift ──────────────────
+      // ── Text: fade in over first 12% ──────────────────────────────────
       const fadeProg = inv(0, 0.12, progress);
       const blurPx   = (1 - fadeProg) * 6;
 
+      // Mobile text: simple opacity fade, no blur or parallax
+      if (mobileTextRef.current)
+        mobileTextRef.current.style.opacity = fadeProg.toFixed(3);
+
+      // Desktop left/right: fade + blur + parallax
       if (leftRef.current) {
         leftRef.current.style.opacity   = fadeProg.toFixed(3);
         leftRef.current.style.filter    = `blur(${blurPx.toFixed(1)}px)`;
@@ -81,12 +87,10 @@ export default function BeehiveScroll() {
       }
 
       // ── Background gradient phases ─────────────────────────────────────
-      // Green bell curve: rises 0→40%, falls 55→80%
       const greenRise      = inv(0,    0.40, progress);
       const greenFall      = inv(0.55, 0.80, progress);
       const greenIntensity = greenRise * (1 - greenFall);
 
-      // Teal bell curve: rises 35→70%, falls 82→100%
       const tealRise      = inv(0.35, 0.70, progress);
       const tealFall      = inv(0.82, 1.00, progress);
       const tealIntensity = tealRise * (1 - tealFall);
@@ -100,10 +104,8 @@ export default function BeehiveScroll() {
         ].join(", ");
       }
 
-      // ── Text colour: navy → white as colours peak, returns at end ──────
-      // colorDrive hits 1.0 at the height of the green/teal phase
+      // ── Desktop text colour: navy → white as colours peak ─────────────
       const colorDrive = Math.min(1, Math.max(greenIntensity, tealIntensity) * 1.3);
-      // Navy rgb(15, 76, 92) → White rgb(255, 255, 255)
       const r = Math.round(15 + 240 * colorDrive);
       const g = Math.round(76 + 179 * colorDrive);
       const b = Math.round(92 + 163 * colorDrive);
@@ -119,7 +121,7 @@ export default function BeehiveScroll() {
         rightTextRef.current.style.textShadow = shadow;
       }
 
-      // ── Frame: only re-draw when index changes ────────────────────────
+      // ── Frame: only re-draw when index changes ─────────────────────────
       const frame = Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
       if (frame === lastFrameRef.current) return;
       lastFrameRef.current = frame;
@@ -139,30 +141,58 @@ export default function BeehiveScroll() {
 
   return (
     /*
-      220vh total: 100vh sticky viewport + 120vh scroll track.
-      Gives the user enough time to appreciate text fade-in,
-      the full building rotation, and the colour shift.
+      Mobile:  150vh — short enough to feel purposeful (50vh scroll track)
+      Desktop: 220vh — longer track to appreciate text fade + full rotation
     */
     <section
       ref={containerRef}
-      style={{ height: "220vh" }}
-      className="relative"
+      className="relative h-[150vh] lg:h-[220vh]"
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
 
-        {/* Full-screen animated gradient — z-0, never covers content */}
+        {/* Full-screen animated gradient — z-0 */}
         <div
           ref={bgRef}
           className="absolute inset-0 z-0 pointer-events-none"
         />
 
-        {/* Content grid — canvas z-10, text z-20 */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-[1fr_auto_1fr] items-center gap-6 lg:gap-12">
+        {/*
+          Content wrapper
+          ─ Mobile  (<lg): flex-col, text above canvas, both centered
+          ─ Desktop (≥lg): 3-col grid [left text | canvas | right text]
 
-          {/* LEFT — fades in on scroll, drifts down */}
+          display:none items (hidden/lg:hidden) are excluded from both
+          flex and grid layout, so each breakpoint sees exactly the right
+          elements in exactly the right order.
+        */}
+        <div className="
+          relative z-10 w-full
+          flex flex-col items-center gap-6 px-6
+          lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-12 lg:max-w-7xl lg:mx-auto lg:px-12
+        ">
+
+          {/* ── Mobile text — lg:hidden, first in DOM so it sits above canvas ── */}
+          <div
+            ref={mobileTextRef}
+            className="lg:hidden w-full text-center"
+            style={{ opacity: 0, willChange: "opacity" }}
+          >
+            <span className="block text-xs tracking-[0.2em] uppercase text-[#0ea5a4] font-medium mb-3">
+              Government Relations
+            </span>
+            <h2 className="text-2xl font-bold uppercase leading-tight tracking-wider text-[#0f4c5c] mb-3">
+              Where decisions<br />are made.
+            </h2>
+            <p className="text-sm text-[#0f4c5c]/70 leading-relaxed max-w-[300px] mx-auto">
+              Guy Advisory helps organisations navigate government, build trust
+              and turn complex conversations into clear outcomes.
+            </p>
+          </div>
+
+          {/* ── Desktop LEFT text — hidden on mobile ── */}
           <div
             ref={leftRef}
-            className="relative z-20 hidden lg:block text-right"
+            className="hidden lg:block relative z-20 text-right"
             style={{ opacity: 0, willChange: "transform, opacity, filter" }}
           >
             <p
@@ -174,16 +204,16 @@ export default function BeehiveScroll() {
             </p>
           </div>
 
-          {/* Canvas */}
+          {/* ── Canvas — always rendered, size is responsive ── */}
           <canvas
             ref={canvasRef}
-            className="relative z-10 block w-[300px] h-[300px] md:w-[440px] md:h-[440px] lg:w-[460px] lg:h-[460px]"
+            className="relative z-10 block w-[280px] h-[280px] lg:w-[460px] lg:h-[460px]"
           />
 
-          {/* RIGHT — fades in on scroll, drifts up */}
+          {/* ── Desktop RIGHT text — hidden on mobile ── */}
           <div
             ref={rightRef}
-            className="relative z-20 hidden lg:block text-left"
+            className="hidden lg:block relative z-20 text-left"
             style={{ opacity: 0, willChange: "transform, opacity, filter" }}
           >
             <p
