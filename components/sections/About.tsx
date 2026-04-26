@@ -5,9 +5,7 @@ const team = [
     name: "Erica Guy",
     image: "/images/Erica Guy.webp",
     email: "erica@guyadvisory.com",
-    // Face sits naturally in the upper-centre of her photo
     imagePosition: "center center",
-    imageScale: "",
     bio: [
       "Erica is a highly experienced government relations, strategic communications and public relations practitioner. She provides tailored engagement and communications advice to support companies and organisations to build and protect their reputation with all stakeholders.",
       "Joining Lillis Clark in 2019, Erica led multiple campaigns for clients across challenging sectors, including those facing critical licence-to-operate questions. Her work has included mining, building and construction, healthcare and primary production.",
@@ -24,9 +22,8 @@ const team = [
     name: "Nathan Guy",
     image: "/images/Nathan Guy.jpg",
     email: "nathan@guyadvisory.com",
-    // Pull the crop upward so face is centred; slight scale brings it closer
+    // Shifted upward so face lands in the centre of the 4/3 crop
     imagePosition: "center 30%",
-    imageScale: "scale-105",
     bio: [
       "Nathan brings deep experience in public life, government relations and practical problem-solving. After 15 years in Parliament, he understands how decisions are made, how relationships are built and how organisations can engage effectively with government and stakeholders.",
       "He combines political experience with a grounded, practical style shaped by his farming background and long-standing connections across New Zealand.",
@@ -57,16 +54,27 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {team.map((person) => (
             <div key={person.name} className="flex flex-col">
-              {/* Portrait ratio + overflow-hidden so scale-105 crops cleanly */}
-              <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden mb-8 shadow-md">
-                <Image
-                  src={person.image}
-                  alt={person.name}
-                  fill
-                  className={`object-cover ${person.imageScale}`}
-                  style={{ objectPosition: person.imagePosition }}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+              {/*
+                max-w-[320px] caps the image width so it never grows too large
+                on wide columns — keeps it tight and sharp rather than stretched.
+              */}
+              <div className="max-w-[320px] w-full mx-auto mb-8">
+                {/*
+                  aspect-[4/3] gives a compact landscape crop — shorter than the
+                  previous portrait ratio, which removed the stretched feel.
+                  scale-[1.05] fills the frame and removes dead-space edges.
+                  overflow-hidden clips the scale cleanly.
+                */}
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-sm">
+                  <Image
+                    src={person.image}
+                    alt={person.name}
+                    fill
+                    className="object-cover scale-[1.05]"
+                    style={{ objectPosition: person.imagePosition }}
+                    sizes="(max-width: 640px) 100vw, 320px"
+                  />
+                </div>
               </div>
 
               <h3 className="text-2xl font-medium tracking-wide text-[#0f4c5c] mb-1">
