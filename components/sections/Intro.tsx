@@ -18,9 +18,9 @@ const pillars = [
 
 export default function Intro() {
   return (
-    <section id="about" className="scroll-mt-24 py-24 lg:py-32">
+    <section id="about" className="scroll-mt-24 py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
+        <div className="max-w-3xl mx-auto text-center mb-10 lg:mb-14">
           <p className="text-xl lg:text-2xl text-[#0f4c5c]/80 leading-relaxed font-light">
             Guy Advisory helps organisations build trust, protect reputation and
             navigate complex stakeholder environments. We work alongside leaders
@@ -33,9 +33,9 @@ export default function Intro() {
           {pillars.map((pillar) => (
             <div
               key={pillar.title}
-              className="p-8 bg-white/65 backdrop-blur-sm border border-white/60 rounded-2xl hover:border-[#0ea5a4]/30 hover:bg-white/80 transition-all duration-200 shadow-sm"
+              className="p-6 bg-white/65 backdrop-blur-sm border border-white/60 rounded-2xl hover:border-[#0ea5a4]/30 hover:bg-white/80 transition-all duration-200 shadow-sm"
             >
-              <div className="w-10 h-0.5 bg-[#0ea5a4] mb-6" />
+              <div className="w-10 h-0.5 bg-[#0ea5a4] mb-4" />
               <h3 className="text-lg font-medium tracking-wide text-[#0f4c5c] mb-3">
                 {pillar.title}
               </h3>

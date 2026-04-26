@@ -48,9 +48,9 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="scroll-mt-24 py-24 lg:py-32">
+    <section id="services" className="scroll-mt-24 py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-16 lg:mb-20">
+        <div className="mb-10 lg:mb-14">
           <span className="text-xs tracking-[0.2em] uppercase text-[#0ea5a4] font-medium">
             What we do
           </span>
@@ -65,9 +65,9 @@ export default function Services() {
             return (
               <div
                 key={service.title}
-                className="group p-8 bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl shadow-sm hover:border-[#0ea5a4]/30 hover:bg-white/85 hover:shadow-md transition-all duration-200"
+                className="group p-6 bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl shadow-sm hover:border-[#0ea5a4]/30 hover:bg-white/85 hover:shadow-md transition-all duration-200"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#0ea5a4]/10 flex items-center justify-center mb-6 group-hover:bg-[#0ea5a4]/20 transition-colors duration-200">
+                <div className="w-10 h-10 rounded-xl bg-[#0ea5a4]/10 flex items-center justify-center mb-4 group-hover:bg-[#0ea5a4]/20 transition-colors duration-200">
                   <Icon className="w-5 h-5 text-[#0ea5a4]" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-base font-medium tracking-wide text-[#0f4c5c] mb-3">

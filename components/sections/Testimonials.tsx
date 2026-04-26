@@ -24,9 +24,9 @@ const testimonials = [
 export default function Testimonials() {
   return (
     // Dark zone of the gradient — headings use white, cards use glass-white
-    <section id="testimonials" className="scroll-mt-24 py-24 lg:py-32">
+    <section id="testimonials" className="scroll-mt-24 py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-16 lg:mb-20">
+        <div className="mb-10 lg:mb-14">
           <span className="text-xs tracking-[0.2em] uppercase text-[#7ed957] font-medium">
             What clients say
           </span>
@@ -39,10 +39,10 @@ export default function Testimonials() {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl border border-white/20 shadow-sm flex flex-col"
+              className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-white/20 shadow-sm flex flex-col"
             >
-              <div className="w-8 h-0.5 bg-[#0ea5a4] mb-8" />
-              <p className="text-[#0f4c5c] text-base leading-relaxed flex-1 mb-8">
+              <div className="w-8 h-0.5 bg-[#0ea5a4] mb-5" />
+              <p className="text-[#0f4c5c] text-base leading-relaxed flex-1 mb-5">
                 &ldquo;{t.quote}&rdquo;
               </p>
               <div>

@@ -13,19 +13,19 @@ export default function Contact() {
 
   return (
     // Dark zone of the gradient — white text on left, white card on right
-    <section id="contact" className="scroll-mt-24 py-24 lg:py-32">
+    <section id="contact" className="scroll-mt-24 py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
 
           {/* Left column — white text on dark gradient */}
           <div>
             <span className="text-xs tracking-[0.2em] uppercase text-[#7ed957] font-medium">
               Get in touch
             </span>
-            <h2 className="mt-3 text-3xl lg:text-4xl font-light tracking-wide text-white mb-6">
+            <h2 className="mt-3 text-3xl lg:text-4xl font-light tracking-wide text-white mb-4">
               Let&apos;s talk.
             </h2>
-            <p className="text-white/65 leading-relaxed mb-10">
+            <p className="text-white/65 leading-relaxed mb-6">
               For direct enquiries, email Erica or Nathan. Or use the form and
               we&apos;ll be in touch shortly.
             </p>
@@ -57,7 +57,7 @@ export default function Contact() {
           </div>
 
           {/* Right column — white card keeps form readable on dark background */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-7 lg:p-9 shadow-sm">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-sm">
             {submitted ? (
               <div className="flex flex-col items-start justify-center h-full min-h-[200px]">
                 <div className="w-10 h-0.5 bg-[#0ea5a4] mb-6" />

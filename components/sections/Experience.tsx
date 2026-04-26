@@ -15,10 +15,10 @@ export default function Experience() {
       The content lives inside a contained dark panel with rounded corners
       so it reads as an intentional design moment rather than an abrupt block.
     */
-    <section id="experience" className="scroll-mt-24 py-16 lg:py-24 px-6 lg:px-8">
+    <section id="experience" className="scroll-mt-24 py-10 lg:py-16 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-[#0f4c5c] rounded-3xl px-8 py-12 lg:px-14 lg:py-14">
-          <div className="mb-12">
+        <div className="bg-[#0f4c5c] rounded-3xl px-8 py-10 lg:px-12 lg:py-12">
+          <div className="mb-8">
             <span className="text-xs tracking-[0.2em] uppercase text-[#7ed957] font-medium">
               Sectors
             </span>
