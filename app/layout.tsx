@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "Guy Advisory",
   description:
     "Government relations, public relations and strategic communications for organisations that need clarity, credibility and trusted support.",
+  verification: {
+    google: "gP58-VvbWfNcw4xvFkPChAoJwDIiYZBiPbIpLUor5tw",
+  },
 };
 
 export default function RootLayout({
@@ -23,7 +26,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <head>
+      <body className="min-h-full flex flex-col font-[var(--font-inter)]">
         {gaId && (
           <>
             <Script
@@ -40,10 +43,9 @@ export default function RootLayout({
             </Script>
           </>
         )}
-      </head>
-      <body className="min-h-full flex flex-col font-[var(--font-inter)]">
         {children}
       </body>
     </html>
   );
+}
 }
