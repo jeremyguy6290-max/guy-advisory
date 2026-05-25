@@ -23,7 +23,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-[var(--font-inter)]">
+      <head>
         {gaId && (
           <>
             <Script
@@ -40,6 +40,8 @@ export default function RootLayout({
             </Script>
           </>
         )}
+      </head>
+      <body className="min-h-full flex flex-col font-[var(--font-inter)]">
         {children}
       </body>
     </html>
