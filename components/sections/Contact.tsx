@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { Mail } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -51,6 +51,17 @@ export default function Contact() {
                 </div>
                 <span className="text-sm text-white/70 group-hover:text-white transition-colors">
                   nathan@guyadvisory.com
+                </span>
+              </a>
+              <a
+                href="tel:021894123"
+                className="flex items-center gap-3 group"
+              >
+                <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                  <Phone className="w-4 h-4 text-white/70" strokeWidth={1.5} />
+                </div>
+                <span className="text-sm text-white/70 group-hover:text-white transition-colors">
+                  021 894 123
                 </span>
               </a>
             </div>

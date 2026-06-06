@@ -8,12 +8,13 @@ const team = [
     name: "Erica Guy",
     image: "/images/Erica Guy.webp",
     email: "erica@guyadvisory.com",
+    phone: "021 894 123",
     imagePosition: "center 10%",
     preview:
-      "Erica is a highly experienced government relations, strategic communications and public relations practitioner. She provides tailored advice to help organisations build and protect their reputation with all stakeholders.",
+      "Erica is a highly experienced government relations, strategic communications and public relations practitioner. She provides tailored engagement and communications advice to support companies and organisations to build and protect their reputation with all stakeholders.",
     bio: [
-      "Joining Lillis Clark in 2019, Erica led multiple campaigns for clients across challenging sectors, including those facing critical licence-to-operate questions. Her work has included mining, building and construction, healthcare and primary production.",
-      "A trained journalist, Erica has a background in provincial, daily and rural journalism before transitioning to public relations consulting. She has worked with clients including Fonterra, Ballance Agri-Nutrients, Contact Energy and the Chiefs rugby team, handling media relations, crisis communication, stakeholder engagement and event management.",
+      "While she established Guy Advisory in 2003, Erica has been an Associate at government relations specialist agency, Lillis Clark, since 2019 leading multiple campaigns for clients, including those in highly challenging sectors facing critical licence-to-operate questions. This has included work across the mining, building and construction, healthcare, and primary production sectors.",
+      "A trained journalist, Erica has a background in provincial, daily and rural journalism before transitioning to public relations consulting more than 20 years ago. She has worked mainly in the private sector and handled a variety of communications needs from media relations to crisis, stakeholder and event management.",
     ],
     tags: [
       "Government Relations",
@@ -26,12 +27,15 @@ const team = [
     name: "Nathan Guy",
     image: "/images/Nathan Guy.jpg",
     email: "nathan@guyadvisory.com",
+    phone: null,
     imagePosition: "center 30%",
     preview:
-      "Nathan brings deep experience in public life, government relations and practical problem-solving. After 15 years in Parliament, he understands how decisions are made, how relationships are built and how organisations can engage effectively with government and stakeholders.",
+      "Nathan is an experienced governor and politician, who holds a variety of roles that ensure he has regular engagement with government Ministers, officials and decision-makers.",
     bio: [
-      "He combines political experience with a grounded, practical style shaped by his farming background and long-standing connections across New Zealand.",
-      "Nathan helps clients understand the landscape, sharpen their message and work toward clear, achievable outcomes.",
+      "Nathan is currently the Special Agricultural Trade Envoy, Chair of the Meat Industry Association, Chair of Apiculture New Zealand, Chair of Barenbrug Advisory Board and Managing Director of Kereru Farm, a family dairy farming business in the Horowhenua.",
+      "He was a Minister in the John Key-led National government, after being elected to Parliament in 2005 and becoming the MP for Otaki in 2008 and holding the seat until his retirement in 2020. His Ministerial portfolios included the Minister for Primary Industries, Immigration, Racing, Veterans Affairs and Internal Affairs.",
+      "Prior to entering Parliament, Nathan was a Councillor on the Horowhenua District Council.",
+      "Nathan is known for his open communication style and for being an honest broker.",
     ],
     tags: [
       "Government Relations",
@@ -82,7 +86,7 @@ export default function About() {
 
                 {/* Content */}
                 <div className="p-6 space-y-4">
-                  {/* Name + email */}
+                  {/* Name + email + phone */}
                   <div className="space-y-1">
                     <h3 className="text-xl font-semibold tracking-wide text-[#0f4c5c]">
                       {person.name}
@@ -93,6 +97,9 @@ export default function About() {
                     >
                       {person.email}
                     </a>
+                    {person.phone && (
+                      <p className="text-sm text-[#0ea5a4]">{person.phone}</p>
+                    )}
                   </div>
 
                   {/* Preview — always visible */}

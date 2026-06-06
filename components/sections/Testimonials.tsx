@@ -1,23 +1,21 @@
-// PLACEHOLDER TESTIMONIALS — replace quotes and attribution before launch
-
 const testimonials = [
   {
     quote:
-      "Guy Advisory brought clarity to a complex environment and helped us understand the path forward.",
-    author: "Chief Executive",
-    organisation: "Organisation name",
+      "Erica provided first class advice and recommendations, and her contacts and access to decision-makers where required are excellent. We faced some trying moments and she always took the positive approach and kept her humour and common sense, which made those times much easier to deal with.",
+    author: "Alan",
+    organisation: "Executive Chairman",
   },
   {
     quote:
-      "Their advice was practical, calm and grounded in real experience.",
-    author: "General Manager",
-    organisation: "Organisation name",
+      "Erica has played an important role in making sure the industry's voice is heard, particularly where policy and regulation come into play, and has a knack for cutting through complexity to get to practical solutions.",
+    author: "Greg",
+    organisation: "Chief Executive",
   },
   {
     quote:
-      "Erica and Nathan understand relationships, reputation and how to get things moving.",
-    author: "Board Chair",
-    organisation: "Organisation name",
+      "Since I started collaborating with Erica, her proactive approach and unwavering support have made a significant impact. Efforts in helping us connect with relevant Ministers have opened doors to exciting opportunities and her insider knowledge has consistently guided us.",
+    author: "Mike",
+    organisation: "Chief Executive",
   },
 ];
 
